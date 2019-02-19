@@ -25,3 +25,18 @@ const isEmpty = (element) => {
 
   if (element.innerHTML === '') element.remove()
 }
+
+/**
+ * disableContext
+ *
+ * Prevent the default right menu click
+ *
+ * @param {object} element
+ */
+const disableContext = (element) => {
+  if (!element) return
+
+  element.addEventListener('contextmenu', (e) => {
+    e.preventDefault()
+  })
+}
