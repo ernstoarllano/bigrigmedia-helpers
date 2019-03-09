@@ -31,7 +31,7 @@ const isEmpty = (element) => {
  *
  * Prevent the default right menu click
  *
- * @param {object} element
+ * @param {object} element - The element that will get disabled
  */
 const disableContext = (element) => {
   if (!element) return
@@ -39,4 +39,41 @@ const disableContext = (element) => {
   element.addEventListener('contextmenu', (e) => {
     e.preventDefault()
   })
+}
+
+/**
+ * observeElements
+ *
+ * Determine if element is entering the frame
+ *
+ * @param {array} elements - The elements to watch
+ */
+const observeElements = (elements) => {
+  elements.forEach(element => {
+    if (element.isIntersecting) {
+      handleImage(element)
+    }
+  })
+}
+
+/**
+ * handleImage
+ *
+ * Set an element's background
+ *
+ * @param {object} element - The element to set a background to
+ */
+const handleImage = (element) => {
+  const mobileBG = element.target.dataset.mobile
+  const desktopBG = element.target.dataset.mobile
+
+  if (!mobileBG && !desktopBG) return
+
+  if (window.matchMedia('(min-width: 1024px)').matches) {
+    element.target.style.backgroundImage = `url(${mobileBG})`
+  } else {
+    element.target.style.backgroundImage = `url(${desktopBG})`
+  }
+
+  element.target.classList.add('has-loaded')
 }
