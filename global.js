@@ -1,8 +1,7 @@
-import { isExternal, isEmpty, dropdownState } from './helpers'
+import { isExternal, isEmpty } from './helpers'
 
 const anchors = document.querySelectorAll('a')
 const pTags = document.querySelectorAll('p')
-const dropdowns = document.querySelectorAll('.menu-item-has-children')
 
 // Handle external urls
 anchors.forEach(anchor => {
@@ -22,10 +21,3 @@ anchors.forEach(anchor => {
 
 // Handle empty p tags
 pTags.forEach(isEmpty)
-
-// Handle dropdowns visibility state
-if (window.matchMedia('(max-width: 1023px)').matches) {
-  dropdowns.forEach(dropdown => {
-    dropdown.addEventListener('click', dropdownState)
-  })
-}
