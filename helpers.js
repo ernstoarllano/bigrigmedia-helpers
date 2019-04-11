@@ -77,3 +77,34 @@ const handleImage = (element) => {
 
   element.target.classList.add('has-loaded')
 }
+
+/**
+ * dropdownState
+ * 
+ * Set a dropdowns visibility state
+ * 
+ * @param {object} event - The click event listener
+ */
+const dropdownState = (event) => {
+  let currentDropdown = event.currentTarget
+  let currentAnchor = event.target
+
+  const parentAnchor = currentDropdown.children[0]
+  const dropdowns = document.querySelectorAll('.menu-item-has-children')
+
+  if (currentAnchor == parentAnchor) {
+    event.preventDefault()
+  } else {
+    return
+  }
+
+  dropdowns.forEach(dropdown => {
+    if (currentDropdown == dropdown) {
+      currentDropdown.classList.add('is-open')
+
+      return
+    }
+
+    dropdown.classList.remove('is-open')
+  })
+}
